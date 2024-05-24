@@ -1,0 +1,15 @@
+{% extends "root.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>edit profile</h1>
+    <div class="edit-profile-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

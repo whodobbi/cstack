@@ -1,0 +1,50 @@
+{% extends "root.html" %}
+{% load static %}
+
+{% block title %}
+    All cards
+{% endblock %}
+
+{% block header %}
+    <h1>All cards</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="accordion" id="accordionCategories">
+        {% for category in categories %}
+            {% if category.cards.exists %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ category.pk }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ category.pk }}" aria-expanded="false" aria-controls="collapse{{ category.pk }}">
+                            {{ category.name }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ category.pk }}" class="accordion-collapse collapse" aria-labelledby="heading{{ category.pk }}" data-bs-parent="#accordionCategories">
+                        <div class="accordion-body">
+                            <ul class="list-group">
+                                {% for card in category.cards.all %}
+                                    <li class="list-group-item">
+                                        <a href="{% url 'cards:card_detail' pk=card.pk %}">{{ card.description }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ category.pk }}">
+                        <button class="accordion-button collapsed disabled" type="button" disabled style="color: gray;">
+                            {{ category.name }}
+                        </button>
+                    </h2>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% endblock %}

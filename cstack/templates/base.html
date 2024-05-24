@@ -1,0 +1,22 @@
+{% extends "root.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h1>welcome to carat stack</h1>
+                <p>a place for card enthusiasts to explore, collect, and connect!</p>
+                <hr>
+                {% if not user.is_authenticated %}
+                    <p>new here? <a href="{% url 'myauth:register' %}">sign up</a> or
+                    <a href="{% url 'myauth:login' %}">log in</a> to start collecting!</p>
+                    <p>already a member? <a href="{% url 'myauth:login' %}">explore our catalog</a>.</p>
+                {% else %}
+                    <p>already a member? <a href="{% url 'cards:list' %}">explore our catalog</a>.</p>
+                {% endif %}
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "root.html" %}
+{% load static %}
+
+{% block title %}
+{{ page_title | default:"Cstack" }}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form class="form-inline justify-content-center">-->
+        <input type="text" class="form-control mb-2 mr-sm-2" id="searchInput" placeholder="Search cards...">
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+    </form>
+{% endblock %}

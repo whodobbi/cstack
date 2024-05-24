@@ -1,0 +1,45 @@
+{% extends "root.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>my profile</h1>
+    <div class="profile-header">
+        {% if user.profile.image %}
+        <img
+                src="{{ user.profile.image.url }}"
+                alt="{{ user.profile.user.username }}'s profile picture"
+                class="profile-image"
+        >
+        {% else %}
+        <i class="bi bi-gem profile-icon"></i>
+        {% endif %}
+        <h2>{{ user.profile.user.username }}</h2>
+        <p>email: {{ user.profile.user.email }}</p>
+    </div>
+    <div class="profile-details">
+        <h3>info</h3>
+        <p><strong>bias:</strong> {{ user.profile.bias }}</p>
+        <p><strong>entry era:</strong> {{ user.profile.entry_era }}</p>
+        <p><strong>favourite cards:</strong> {{ user.profile.fav_cards }}</p>
+        <p><strong>most expensive card:</strong> {{ user.profile.exp_card }}</p>
+        <p><strong>most desirable card:</strong> {{ user.profile.des_card }}</p>
+        <p><strong>about me:</strong> {{ user.profile.about }}</p>
+    </div>
+    <div class="profile-collection">
+        <h3>my collection</h3>
+        {% if user.collection.exists %}
+        <ul>
+            {% for card in user.collection.all %}
+            <li>{{ card.description }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>no cards in collection.</p>
+        {% endif %}
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <a href="{% url 'myauth:edit_profile' %}" class="btn btn-primary">edit profile</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

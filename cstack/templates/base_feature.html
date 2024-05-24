@@ -1,0 +1,23 @@
+{% extends "root.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h1>welcome to carat stack</h1>
+                <p>a place for card enthusiasts to explore, collect, and connect!</p>
+                <hr>
+<!--                <form class="form-inline justify-content-center">-->
+<!--                    <input type="text" class="form-control mb-2 mr-sm-2" id="searchInput" placeholder="Search cards...">-->
+<!--                    <button type="submit" class="btn btn-primary mb-2">Search</button>-->
+<!--                </form>-->
+<!--                <p>new here? <a href="{% url 'signup' %}">sign up</a> or </p>-->
+                <p><a href="{% url 'login' %}">log in</a> to start collecting!</p>
+                <p>already a member? <a href="{% url 'card_list' %}">explore our catalog</a>.</p>
+                <hr>
+<!--                <p>for any inquiries, contact us at <a href="aokimisori@gmail.com">contact@example.com</a>.</p>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
